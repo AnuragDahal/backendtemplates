@@ -3,11 +3,18 @@ import mongoose from 'mongoose';
 import {env} from "./utils/envutils.js";
 import authRouter from "./apis/auth.js"
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
+const corsOptions= {
+    origin:['http://localhost:3000'],
+    credentials:true,
+}
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions))
 
 // Connect to MongoDB
 mongoose.connect(env.MONGO_URI)

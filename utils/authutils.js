@@ -1,6 +1,7 @@
 // utils/authUtils.js
 import jwt from 'jsonwebtoken';
 import {env} from '../utils/envutils.js';
+import otpGenerator from 'otp-generator';
 
 export const generateAuthToken = (res,email) => {
 
@@ -17,3 +18,9 @@ export const generateAuthToken = (res,email) => {
         maxAge: parseInt(env.EXPIRES_IN_SEC * 1000)
     });
 };
+
+export const generateOtp = (length= 6)=>{
+
+    const otp = otpGenerator.generate(6,{digits:true,specialChars:false,alphabets:false})
+    return otp
+}
